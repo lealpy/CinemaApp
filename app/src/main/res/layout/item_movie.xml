@@ -13,6 +13,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/movieImage"
             android:layout_width="@dimen/dimen_200_dp"
             android:layout_height="@dimen/dimen_200_dp"
             android:adjustViewBounds="true"
@@ -24,6 +25,7 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
+            android:id="@+id/movieLocalizedName"
             android:layout_width="@dimen/dimen_0_dp"
             android:layout_height="wrap_content"
             android:textColor="@color/white"

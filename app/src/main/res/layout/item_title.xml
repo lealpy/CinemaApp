@@ -7,7 +7,7 @@
     android:backgroundTint="@color/item_title_color">
 
     <TextView
-        android:id="@+id/movieName"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="@dimen/dimen_12_dp"
