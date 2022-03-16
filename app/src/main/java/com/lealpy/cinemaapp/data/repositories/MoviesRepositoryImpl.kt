@@ -29,7 +29,7 @@ class MoviesRepositoryImpl @Inject constructor(
         return moviesDao.getAllMovieEntities().toMovies()
     }
 
-    override suspend fun getCharacterById(movieId: Int): Movie {
+    override suspend fun getMovieById(movieId: Int): Movie {
         return moviesDao.getMovieEntityById(movieId).toMovie()
     }
 
