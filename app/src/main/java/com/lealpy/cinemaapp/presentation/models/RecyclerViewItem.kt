@@ -2,14 +2,14 @@ package com.lealpy.cinemaapp.presentation.models
 
 sealed class RecyclerViewItem(val itemId: Int) {
 
-    data class TitleItem(
+    data class ChapterItem(
         val id: Int,
-        val title: String,
+        val chapter: Chapter,
     ) : RecyclerViewItem(itemId = id)
 
     data class GenreItem(
         val id: Int,
-        val genreName: String,
+        val genre: Genre,
     ) : RecyclerViewItem(itemId = id)
 
     data class MovieItem(

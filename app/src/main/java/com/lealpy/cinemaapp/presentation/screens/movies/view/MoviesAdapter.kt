@@ -20,8 +20,8 @@ class MoviesAdapter(
     inner class TitleItemHolder(
         private val binding: ItemTitleBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(titleItem: RecyclerViewItem.TitleItem) {
-            binding.title.text = titleItem.title
+        fun bind(titleItem: RecyclerViewItem.ChapterItem) {
+            binding.title.text = titleItem.chapter.title
         }
     }
 
@@ -29,7 +29,7 @@ class MoviesAdapter(
         private val binding: ItemGenreBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(genreItem: RecyclerViewItem.GenreItem) {
-            binding.genreName.text = genreItem.genreName
+            binding.genreName.text = genreItem.genre.genreName
 
             binding.root.setOnClickListener {
                 onGenreItemClicked(genreItem)
@@ -60,7 +60,7 @@ class MoviesAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is RecyclerViewItem.TitleItem -> ViewType.TITLE_ITEM.ordinal
+            is RecyclerViewItem.ChapterItem -> ViewType.TITLE_ITEM.ordinal
             is RecyclerViewItem.GenreItem -> ViewType.GENRE_ITEM.ordinal
             is RecyclerViewItem.MovieItem -> ViewType.MOVIE_ITEM.ordinal
             else -> throw Exception(EXCEPTION_MESSAGE)
@@ -108,7 +108,7 @@ class MoviesAdapter(
         val item = getItem(position)
 
         when (holder) {
-            is TitleItemHolder -> holder.bind(item as RecyclerViewItem.TitleItem)
+            is TitleItemHolder -> holder.bind(item as RecyclerViewItem.ChapterItem)
             is GenreItemHolder -> holder.bind(item as RecyclerViewItem.GenreItem)
             is MovieItemHolder -> holder.bind(item as RecyclerViewItem.MovieItem)
         }
