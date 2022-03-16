@@ -40,10 +40,10 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesInterface.Movie
         initViews()
     }
 
-//    override fun onDestroyView() {
-//        presenter?.detachView()
-//        super.onDestroyView()
-//    }
+    override fun onDestroyView() {
+        presenter.detachView()
+        super.onDestroyView()
+    }
 
     override fun updateRecyclerViewItems(recyclerViewItems: List<RecyclerViewItem>) {
         adapter.submitList(recyclerViewItems)
@@ -58,8 +58,8 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesInterface.Movie
     }
 
     private fun initViews() {
-        binding.recyclerView.adapter = adapter
         presenter.viewIsReady()
+        binding.recyclerView.adapter = adapter
         binding.swipeRefreshLayout.setOnRefreshListener {
             presenter.onSwipedRefresh()
             binding.swipeRefreshLayout.isRefreshing = false

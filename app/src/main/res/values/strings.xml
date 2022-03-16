@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CinemaApp</string>
+    <string name="year_format">Год: %1$s</string>
+    <string name="rating_format">Рейтинг: %1$s</string>
 </resources>

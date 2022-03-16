@@ -12,21 +12,21 @@ import dagger.hilt.android.components.FragmentComponent
 
 @InstallIn(FragmentComponent::class)
 @Module
-abstract class ViewBindsModule {
+abstract class ScreenMoviesBindsModule {
     @Binds
     abstract fun bindMoviesFragment(
         moviesFragment: MoviesFragment,
     ): MoviesInterface.MoviesViewInterface
 
     @Binds
-    abstract fun bindPresenter(
+    abstract fun bindMoviesPresenter(
         moviesPresenter: MoviesPresenter,
     ): MoviesInterface.MoviesPresenterInterface
 }
 
 @InstallIn(FragmentComponent::class)
 @Module
-class ViewProvidesModule {
+class ScreenMoviesProvidesModule {
 
     @Provides
     fun provideMoviesFragment(fragment: Fragment): MoviesFragment {
