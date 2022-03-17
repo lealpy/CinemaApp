@@ -10,6 +10,6 @@
     <color name="item_genre_unselected_color">#2e2e2e</color>
     <color name="item_genre_selected_color">#00B8D4</color>
     <color name="item_title_color">#1c1c1c</color>
-    <color name="item_movie_shadow">#7000</color>
+    <color name="item_movie_shadow">#99000000</color>
     <color name="text_color">#DCDCDC</color>
 </resources>
