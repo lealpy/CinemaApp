@@ -18,6 +18,10 @@ class MainPresenter @Inject constructor(
 
     override val coroutineContext: CoroutineContext = job + Dispatchers.Main
 
+    override fun viewDestroyed() {
+        job.cancel()
+    }
+
     override fun viewCreated() {
         view.showMessageNoInternet()
 
@@ -29,10 +33,6 @@ class MainPresenter @Inject constructor(
                 }
             }
         }
-    }
-
-    override fun viewDestroyed() {
-        job.cancel()
     }
 
 }

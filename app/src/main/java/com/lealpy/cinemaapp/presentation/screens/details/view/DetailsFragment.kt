@@ -23,7 +23,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details), DetailsInterface.De
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailsBinding.bind(view)
-        initViews()
+        arguments?.getInt(MOVIE_ID_KEY)?.let { movieId ->
+            presenter.viewCreated(movieId = movieId)
+        }
     }
 
     override fun onDestroyView() {
@@ -59,12 +61,6 @@ class DetailsFragment : Fragment(R.layout.fragment_details), DetailsInterface.De
 
     override fun hideProgress() {
         binding.progressBar.visibility = View.GONE
-    }
-
-    private fun initViews() {
-        arguments?.getInt(MOVIE_ID_KEY)?.let { movieId ->
-            presenter.viewCreated(movieId = movieId)
-        }
     }
 
 }

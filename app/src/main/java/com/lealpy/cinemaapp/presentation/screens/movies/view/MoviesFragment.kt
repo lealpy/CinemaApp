@@ -38,6 +38,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesInterface.Movie
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMoviesBinding.bind(view)
         initViews()
+        presenter.viewCreated()
     }
 
     override fun onDestroyView() {
@@ -58,7 +59,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesInterface.Movie
     }
 
     private fun initViews() {
-        presenter.viewCreated()
         binding.recyclerView.adapter = adapter
         binding.swipeRefreshLayout.setOnRefreshListener {
             presenter.onSwipedRefresh()
