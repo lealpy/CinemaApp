@@ -27,7 +27,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details), DetailsInterface.De
     }
 
     override fun onDestroyView() {
-        presenter.detachView()
+        presenter.viewDestroyed()
         super.onDestroyView()
     }
 
@@ -63,7 +63,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details), DetailsInterface.De
 
     private fun initViews() {
         arguments?.getInt(MOVIE_ID_KEY)?.let { movieId ->
-            presenter.viewIsReady(movieId = movieId)
+            presenter.viewCreated(movieId = movieId)
         }
     }
 

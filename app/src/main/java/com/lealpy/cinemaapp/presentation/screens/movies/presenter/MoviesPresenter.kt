@@ -19,11 +19,11 @@ class MoviesPresenter @Inject constructor(
 
     override val coroutineContext: CoroutineContext = job + Dispatchers.Main
 
-    override fun detachView() {
+    override fun viewDestroyed() {
         job.cancel()
     }
 
-    override fun viewIsReady() {
+    override fun viewCreated() {
         updateItems()
     }
 

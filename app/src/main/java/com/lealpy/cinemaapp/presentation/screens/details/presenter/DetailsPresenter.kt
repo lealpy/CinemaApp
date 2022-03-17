@@ -16,11 +16,11 @@ class DetailsPresenter @Inject constructor(
 
     override val coroutineContext: CoroutineContext = job + Dispatchers.Main
 
-    override fun detachView() {
+    override fun viewDestroyed() {
         job.cancel()
     }
 
-    override fun viewIsReady(movieId: Int) {
+    override fun viewCreated(movieId: Int) {
         updateItem(movieId)
     }
 

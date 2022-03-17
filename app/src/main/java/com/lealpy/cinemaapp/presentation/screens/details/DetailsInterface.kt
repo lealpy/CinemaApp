@@ -1,13 +1,12 @@
 package com.lealpy.cinemaapp.presentation.screens.details
 
 import com.lealpy.cinemaapp.domain.models.Movie
-import com.lealpy.cinemaapp.presentation.models.RecyclerViewItem
 
 interface DetailsInterface {
 
     interface DetailsPresenterInterface {
-        fun viewIsReady(movieId: Int)
-        fun detachView()
+        fun viewCreated(movieId: Int)
+        fun viewDestroyed()
     }
 
     interface DetailsViewInterface {

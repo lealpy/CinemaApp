@@ -4,13 +4,9 @@ import com.lealpy.cinemaapp.presentation.models.RecyclerViewItem
 
 interface MoviesInterface {
 
-    interface MoviesModelInterface {
-        suspend fun getRecyclerViewItems(): List<RecyclerViewItem>
-    }
-
     interface MoviesPresenterInterface {
-        fun viewIsReady()
-        fun detachView()
+        fun viewCreated()
+        fun viewDestroyed()
         fun onGenreItemClicked(genreItem: RecyclerViewItem.GenreItem)
         fun onSwipedRefresh()
     }
