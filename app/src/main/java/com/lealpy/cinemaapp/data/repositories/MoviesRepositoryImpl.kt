@@ -17,6 +17,20 @@ class MoviesRepositoryImpl @Inject constructor(
 ) : MoviesRepository {
 
     override suspend fun getAllMovies(): List<Movie> {
+        saveToDbMoviesFromApi()
+        return moviesDao.getAllMovieEntities().toMovies()
+    }
+
+    override suspend fun getMoviesByGenre(genreName: String): List<Movie> {
+        saveToDbMoviesFromApi()
+        return moviesDao.getMovieEntitiesByGenre(genreName).toMovies()
+    }
+
+    override suspend fun getMovieById(movieId: Int): Movie {
+        return moviesDao.getMovieEntityById(movieId).toMovie()
+    }
+
+    private suspend fun saveToDbMoviesFromApi() {
         try {
             val movieEntities = moviesApi.getAllMovies()
                 .films
@@ -25,12 +39,6 @@ class MoviesRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             Log.e(APP_LOG_TAG, e.message.toString())
         }
-
-        return moviesDao.getAllMovieEntities().toMovies()
-    }
-
-    override suspend fun getMovieById(movieId: Int): Movie {
-        return moviesDao.getMovieEntityById(movieId).toMovie()
     }
 
 }

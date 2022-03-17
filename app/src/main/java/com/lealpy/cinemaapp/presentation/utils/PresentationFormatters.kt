@@ -1,6 +1,7 @@
 package com.lealpy.cinemaapp.presentation.utils
 
 import com.lealpy.cinemaapp.domain.models.Movie
+import com.lealpy.cinemaapp.presentation.models.Genre
 import com.lealpy.cinemaapp.presentation.models.RecyclerViewItem
 
 fun List<Movie>.toMovieItems(): List<RecyclerViewItem.MovieItem> {
@@ -14,6 +15,16 @@ fun List<Movie>.toMovieItems(): List<RecyclerViewItem.MovieItem> {
             imageUrl = movieData.imageUrl,
             description = movieData.description,
             genres = movieData.genres,
+        )
+    }
+}
+
+fun List<Genre>.toGenreItems(checkedGenre: Genre): List<RecyclerViewItem.GenreItem> {
+    return this.map { genre ->
+        RecyclerViewItem.GenreItem(
+            id = genre.id,
+            genre = genre,
+            isChecked = genre == checkedGenre
         )
     }
 }

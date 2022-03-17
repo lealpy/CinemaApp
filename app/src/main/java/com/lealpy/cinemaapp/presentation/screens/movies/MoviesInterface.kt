@@ -8,6 +8,7 @@ interface MoviesInterface {
         fun viewCreated()
         fun viewDestroyed()
         fun onGenreItemClicked(genreItem: RecyclerViewItem.GenreItem)
+        fun onChapterItemClicked(chapterItem: RecyclerViewItem.ChapterItem)
         fun onSwipedRefresh()
     }
 

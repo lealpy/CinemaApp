@@ -14,6 +14,9 @@ interface MoviesDao {
     @Query("SELECT * FROM movie_entities")
     suspend fun getAllMovieEntities(): List<MovieEntity>
 
+    @Query("SELECT * FROM movie_entities WHERE genres LIKE '%' || :genreName || '%'")
+    fun getMovieEntitiesByGenre(genreName: String): List<MovieEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovieEntities(movieEntities: List<MovieEntity>)
 

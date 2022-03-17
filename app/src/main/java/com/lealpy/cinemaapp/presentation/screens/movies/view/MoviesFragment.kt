@@ -24,6 +24,9 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesInterface.Movie
     lateinit var presenter: MoviesInterface.MoviesPresenterInterface
 
     private val adapter = MoviesAdapter(
+        onChapterItemClicked = { chapterItem ->
+            presenter.onChapterItemClicked(chapterItem)
+        },
         onGenreItemClicked = { genreItem ->
             presenter.onGenreItemClicked(genreItem)
         },

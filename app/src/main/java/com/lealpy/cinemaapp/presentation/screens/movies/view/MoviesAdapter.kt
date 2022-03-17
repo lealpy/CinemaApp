@@ -1,6 +1,7 @@
 package com.lealpy.cinemaapp.presentation.screens.movies.view
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -10,18 +11,29 @@ import com.lealpy.cinemaapp.R
 import com.lealpy.cinemaapp.databinding.ItemChapterBinding
 import com.lealpy.cinemaapp.databinding.ItemGenreBinding
 import com.lealpy.cinemaapp.databinding.ItemMovieBinding
+import com.lealpy.cinemaapp.presentation.models.Chapter
 import com.lealpy.cinemaapp.presentation.models.RecyclerViewItem
 
 class MoviesAdapter(
+    private val onChapterItemClicked: (item: RecyclerViewItem.ChapterItem) -> Unit,
     private val onGenreItemClicked: (item: RecyclerViewItem.GenreItem) -> Unit,
     private val onMovieItemClicked: (item: RecyclerViewItem.MovieItem) -> Unit,
 ) : ListAdapter<RecyclerViewItem, RecyclerView.ViewHolder>(DiffCallback()) {
 
-    inner class TitleItemHolder(
+    inner class ChapterItemHolder(
         private val binding: ItemChapterBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(titleItem: RecyclerViewItem.ChapterItem) {
-            binding.title.text = titleItem.chapter.title
+        fun bind(chapterItem: RecyclerViewItem.ChapterItem) {
+            binding.chapterTitle.text = chapterItem.chapter.title
+
+            binding.root.setOnClickListener {
+                onChapterItemClicked(chapterItem)
+            }
+
+            binding.chapterDropDown.visibility = when (chapterItem.chapter) {
+                Chapter.GENRES -> View.VISIBLE
+                Chapter.MOVIES -> View.INVISIBLE
+            }
         }
     }
 
@@ -78,7 +90,7 @@ class MoviesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             ViewType.CHAPTER_ITEM.ordinal -> {
-                TitleItemHolder(
+                ChapterItemHolder(
                     ItemChapterBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
@@ -116,7 +128,7 @@ class MoviesAdapter(
         val item = getItem(position)
 
         when (holder) {
-            is TitleItemHolder -> holder.bind(item as RecyclerViewItem.ChapterItem)
+            is ChapterItemHolder -> holder.bind(item as RecyclerViewItem.ChapterItem)
             is GenreItemHolder -> holder.bind(item as RecyclerViewItem.GenreItem)
             is MovieItemHolder -> holder.bind(item as RecyclerViewItem.MovieItem)
         }

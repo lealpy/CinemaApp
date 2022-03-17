@@ -8,12 +8,20 @@
     app:cardCornerRadius="@dimen/dimen_0_dp">
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:id="@+id/chapterTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:paddingVertical="@dimen/dimen_12_dp"
+        android:textAlignment="center"
         android:textColor="@color/text_color"
-        tools:text="Фильмы" />
+        tools:text="Жанры" />
+
+    <ImageView
+        android:id="@+id/chapterDropDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_baseline_arrow_drop_down_24" />
 
 </androidx.cardview.widget.CardView>
