@@ -3,19 +3,19 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="@color/item_genre_unselected_color"
     app:cardCornerRadius="@dimen/dimen_12_dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/movieImage"
-            android:layout_width="@dimen/dimen_200_dp"
-            android:layout_height="@dimen/dimen_200_dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,13 +36,12 @@
             android:paddingHorizontal="@dimen/dimen_4_dp"
             android:paddingVertical="@dimen/dimen_4_dp"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@color/text_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Эти великолепные мужчины в их летающих машинах, или Как я перелетел из Лондона в Париж за 25 часов 11 минут" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.cardview.widget.CardView>

@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/lealp/AndroidStudioProjects/4 Apps/CinemaApp/app/src/main/res/drawable/ic_baseline_sentiment_dissatisfied_24.xml" value="0.1365" />
         <entry key="..\:/Users/lealp/AndroidStudioProjects/4 Apps/CinemaApp/app/src/main/res/layout/activity_main.xml" value="0.30808080808080807" />
-        <entry key="..\:/Users/lealp/AndroidStudioProjects/4 Apps/CinemaApp/app/src/main/res/layout/fragment_details.xml" value="0.30808080808080807" />
+        <entry key="..\:/Users/lealp/AndroidStudioProjects/4 Apps/CinemaApp/app/src/main/res/layout/fragment_details.xml" value="0.33" />
         <entry key="..\:/Users/lealp/AndroidStudioProjects/4 Apps/CinemaApp/app/src/main/res/layout/fragment_movies.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/lealp/AndroidStudioProjects/4 Apps/CinemaApp/app/src/main/res/layout/item_chapter.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/lealp/AndroidStudioProjects/4 Apps/CinemaApp/app/src/main/res/layout/item_genre.xml" value="0.36666666666666664" />

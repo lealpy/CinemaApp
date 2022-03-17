@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/dimen_36_dp"
         android:paddingVertical="@dimen/dimen_12_dp"
-        android:textColor="@color/white"
+        android:textColor="@color/text_color"
         tools:text="триллер" />
 
 </androidx.cardview.widget.CardView>

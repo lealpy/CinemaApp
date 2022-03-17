@@ -56,8 +56,8 @@ class MoviesAdapter(
 
             requestManager
                 .load(movieItem.imageUrl)
-                .placeholder(R.drawable.ic_baseline_sentiment_dissatisfied_24)
-                .error(R.drawable.ic_baseline_sentiment_dissatisfied_24)
+                .placeholder(R.drawable.ic_baseline_no_photography_24)
+                .error(R.drawable.ic_baseline_no_photography_24)
                 .into(binding.movieImage)
 
             binding.root.setOnClickListener {

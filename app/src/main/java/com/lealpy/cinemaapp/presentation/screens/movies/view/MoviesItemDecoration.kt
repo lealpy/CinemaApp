@@ -28,6 +28,9 @@ class MoviesItemDecoration(
 
         when (adapter.getItemViewType(position)) {
             MoviesAdapter.ViewType.CHAPTER_ITEM.ordinal -> {
+                if (position == 0) {
+                    outRect.top = verticalSpacing
+                }
                 if (position != state.itemCount - 1) {
                     outRect.bottom = verticalSpacing
                 }
@@ -41,7 +44,8 @@ class MoviesItemDecoration(
             }
             MoviesAdapter.ViewType.MOVIE_ITEM.ordinal -> {
                 val column = position % MOVIES_ITEMS_SPAN_COUNT
-                outRect.left = horizontalSpacing - column * horizontalSpacing / MOVIES_ITEMS_SPAN_COUNT
+                outRect.left =
+                    horizontalSpacing - column * horizontalSpacing / MOVIES_ITEMS_SPAN_COUNT
                 outRect.right = (column + 1) * horizontalSpacing / MOVIES_ITEMS_SPAN_COUNT
                 outRect.bottom = verticalSpacing
             }

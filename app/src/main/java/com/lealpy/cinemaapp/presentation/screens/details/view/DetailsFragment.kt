@@ -54,8 +54,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details), DetailsInterface.De
 
         Glide.with(requireContext())
             .load(movie.imageUrl)
-            .placeholder(R.drawable.ic_baseline_sentiment_dissatisfied_24)
-            .error(R.drawable.ic_baseline_sentiment_dissatisfied_24)
+            .placeholder(R.drawable.ic_baseline_no_photography_24)
+            .error(R.drawable.ic_baseline_no_photography_24)
             .into(binding.detailsImage)
 
         (requireActivity() as? AppCompatActivity)?.supportActionBar?.title = movie.localizedName
