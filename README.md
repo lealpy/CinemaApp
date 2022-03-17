@@ -25,3 +25,4 @@ https://user-images.githubusercontent.com/90380451/158894803-4f3e94f9-efe3-442e-
 - Retrofit, OkHttp
 - Glide
 - Room
+- RecyclerView with multiple View Types
