@@ -1,9 +1,10 @@
 package com.lealpy.cinemaapp.presentation.screens.movies.presenter
 
 import com.lealpy.cinemaapp.domain.usecases.GetAllMoviesUseCase
-import com.lealpy.cinemaapp.presentation.models.Genre
-import com.lealpy.cinemaapp.presentation.models.RecyclerViewItem
 import com.lealpy.cinemaapp.presentation.models.Chapter
+import com.lealpy.cinemaapp.presentation.models.Genre
+import com.lealpy.cinemaapp.presentation.models.Genre.ALL_GENRES
+import com.lealpy.cinemaapp.presentation.models.RecyclerViewItem
 import com.lealpy.cinemaapp.presentation.screens.movies.MoviesInterface
 import com.lealpy.cinemaapp.presentation.utils.toMovieItems
 import kotlinx.coroutines.*
@@ -32,24 +33,23 @@ class MoviesPresenter @Inject constructor(
     }
 
     override fun onGenreItemClicked(genreItem: RecyclerViewItem.GenreItem) {
-        genreItem.genre
+        updateItems(checkedGenre = genreItem.genre)
     }
 
-    private fun updateItems() {
+    private fun updateItems(checkedGenre: Genre = ALL_GENRES) {
         launch {
             view.showProgress()
 
             val movies = withContext(Dispatchers.IO) {
-                getRecyclerViewItems()
+                getRecyclerViewItems(checkedGenre = checkedGenre)
             }
 
             view.updateRecyclerViewItems(movies)
-
             view.hideProgress()
         }
     }
 
-    private suspend fun getRecyclerViewItems(): List<RecyclerViewItem> {
+    private suspend fun getRecyclerViewItems(checkedGenre: Genre = ALL_GENRES): List<RecyclerViewItem> {
         val recyclerViewItems = mutableListOf<RecyclerViewItem>()
 
         val genreItems = mutableListOf<RecyclerViewItem.GenreItem>()
@@ -57,12 +57,22 @@ class MoviesPresenter @Inject constructor(
             genreItems.add(
                 RecyclerViewItem.GenreItem(
                     id = genre.id,
-                    genre = genre
+                    genre = genre,
+                    isChecked = genre == checkedGenre
                 )
             )
         }
 
-        val movieItems = getAllMoviesUseCase().toMovieItems()
+        val movieItems = when (checkedGenre) {
+            ALL_GENRES -> {
+                getAllMoviesUseCase().toMovieItems()
+            }
+            else -> {
+                getAllMoviesUseCase().toMovieItems().filter { movieItem ->
+                    movieItem.genres?.contains(checkedGenre.genreName) ?: false
+                }
+            }
+        }
 
         recyclerViewItems.add(
             RecyclerViewItem.ChapterItem(

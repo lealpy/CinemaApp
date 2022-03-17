@@ -10,6 +10,7 @@ sealed class RecyclerViewItem(val itemId: Int) {
     data class GenreItem(
         val id: Int,
         val genre: Genre,
+        val isChecked: Boolean,
     ) : RecyclerViewItem(itemId = id)
 
     data class MovieItem(

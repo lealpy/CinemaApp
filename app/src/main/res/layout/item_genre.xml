@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/genreCardView"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/item_genre_unselected_color"
-    app:cardCornerRadius="@dimen/dimen_12_dp">
+    app:cardCornerRadius="@dimen/dimen_12_dp"
+    tools:cardBackgroundColor="@color/item_genre_unselected_color">
 
     <TextView
         android:id="@+id/genreName"

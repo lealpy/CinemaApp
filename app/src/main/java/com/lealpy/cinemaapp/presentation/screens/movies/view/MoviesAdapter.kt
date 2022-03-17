@@ -34,6 +34,14 @@ class MoviesAdapter(
             binding.root.setOnClickListener {
                 onGenreItemClicked(genreItem)
             }
+
+            val backgroundColor = if (genreItem.isChecked) {
+                itemView.context.getColor(R.color.item_genre_selected_color)
+            } else {
+                itemView.context.getColor(R.color.item_genre_unselected_color)
+            }
+
+            binding.genreCardView.setCardBackgroundColor(backgroundColor)
         }
     }
 
