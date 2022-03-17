@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lealpy.cinemaapp.R
+import com.lealpy.cinemaapp.databinding.ItemChapterBinding
 import com.lealpy.cinemaapp.databinding.ItemGenreBinding
 import com.lealpy.cinemaapp.databinding.ItemMovieBinding
-import com.lealpy.cinemaapp.databinding.ItemTitleBinding
 import com.lealpy.cinemaapp.presentation.models.RecyclerViewItem
 
 class MoviesAdapter(
@@ -18,7 +18,7 @@ class MoviesAdapter(
 ) : ListAdapter<RecyclerViewItem, RecyclerView.ViewHolder>(DiffCallback()) {
 
     inner class TitleItemHolder(
-        private val binding: ItemTitleBinding,
+        private val binding: ItemChapterBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(titleItem: RecyclerViewItem.ChapterItem) {
             binding.title.text = titleItem.chapter.title
@@ -68,7 +68,7 @@ class MoviesAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is RecyclerViewItem.ChapterItem -> ViewType.TITLE_ITEM.ordinal
+            is RecyclerViewItem.ChapterItem -> ViewType.CHAPTER_ITEM.ordinal
             is RecyclerViewItem.GenreItem -> ViewType.GENRE_ITEM.ordinal
             is RecyclerViewItem.MovieItem -> ViewType.MOVIE_ITEM.ordinal
             else -> throw Exception(EXCEPTION_MESSAGE)
@@ -77,9 +77,9 @@ class MoviesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ViewType.TITLE_ITEM.ordinal -> {
+            ViewType.CHAPTER_ITEM.ordinal -> {
                 TitleItemHolder(
-                    ItemTitleBinding.inflate(
+                    ItemChapterBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
@@ -130,8 +130,8 @@ class MoviesAdapter(
             oldItem == newItem
     }
 
-    private enum class ViewType {
-        TITLE_ITEM,
+    enum class ViewType {
+        CHAPTER_ITEM,
         GENRE_ITEM,
         MOVIE_ITEM
     }

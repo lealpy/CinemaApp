@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.lealpy.cinemaapp.R
 import com.lealpy.cinemaapp.databinding.FragmentMoviesBinding
 import com.lealpy.cinemaapp.presentation.models.RecyclerViewItem
@@ -62,6 +63,39 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesInterface.Movie
 
     private fun initViews() {
         binding.recyclerView.adapter = adapter
+
+        val layoutManager = GridLayoutManager(context, CHAPTER_ITEMS_SPAN_SIZE)
+
+        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return when (adapter.getItemViewType(position)) {
+                    MoviesAdapter.ViewType.CHAPTER_ITEM.ordinal -> {
+                        CHAPTER_ITEMS_SPAN_SIZE
+                    }
+                    MoviesAdapter.ViewType.GENRE_ITEM.ordinal -> {
+                        GENRE_ITEMS_SPAN_SIZE
+                    }
+                    MoviesAdapter.ViewType.MOVIE_ITEM.ordinal -> {
+                        MOVIE_ITEMS_SPAN_SIZE
+                    }
+                    else -> {
+                        CHAPTER_ITEMS_SPAN_SIZE
+                    }
+                }
+            }
+
+        }
+
+        binding.recyclerView.layoutManager = layoutManager
+
+        val itemDecoration = MoviesItemDecoration(
+            adapter = adapter,
+            verticalSpacing = requireContext().resources.getDimension(R.dimen.dimen_6_dp).toInt(),
+            horizontalSpacing = requireContext().resources.getDimension(R.dimen.dimen_12_dp).toInt()
+        )
+
+        binding.recyclerView.addItemDecoration(itemDecoration)
+
         binding.swipeRefreshLayout.setOnRefreshListener {
             presenter.onSwipedRefresh()
             binding.swipeRefreshLayout.isRefreshing = false
@@ -73,6 +107,12 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesInterface.Movie
         val appCompatActivity = (requireActivity() as? AppCompatActivity)
         appCompatActivity?.supportActionBar?.title = getString(R.string.movies_title)
         appCompatActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
+
+    companion object {
+        private const val CHAPTER_ITEMS_SPAN_SIZE = 2
+        private const val GENRE_ITEMS_SPAN_SIZE = 2
+        private const val MOVIE_ITEMS_SPAN_SIZE = 1
     }
 
 }

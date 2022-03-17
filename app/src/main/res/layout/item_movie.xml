@@ -18,33 +18,31 @@
             android:layout_height="@dimen/dimen_200_dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            tools:srcCompat="@tools:sample/avatars"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/movieLocalizedName"
             android:layout_width="@dimen/dimen_0_dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_gravity="bottom"
+            android:background="@color/item_movie_shadow"
+            android:ellipsize="end"
             android:gravity="center"
             android:maxLines="2"
-            android:ellipsize="end"
-            android:textAlignment="center"
-            android:paddingVertical="@dimen/dimen_4_dp"
             android:paddingHorizontal="@dimen/dimen_4_dp"
-            android:background="@color/item_movie_shadow"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingVertical="@dimen/dimen_4_dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Эти великолепные мужчины в их летающих машинах, или Как я перелетел из Лондона в Париж за 25 часов 11 минут"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Эти великолепные мужчины в их летающих машинах, или Как я перелетел из Лондона в Париж за 25 часов 11 минут" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.cardview.widget.CardView>

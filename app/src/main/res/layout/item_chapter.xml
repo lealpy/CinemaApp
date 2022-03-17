@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/item_title_color">
+    android:backgroundTint="@color/item_title_color"
+    app:cardCornerRadius="@dimen/dimen_0_dp">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:paddingVertical="@dimen/dimen_12_dp"
         android:textColor="@color/white"
-        android:layout_gravity="center"
         tools:text="Фильмы" />
 
 </androidx.cardview.widget.CardView>
