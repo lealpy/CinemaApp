@@ -9,17 +9,17 @@ import kotlin.coroutines.CoroutineContext
 class DetailsPresenter @Inject constructor(
     private val view: DetailsInterface.DetailsViewInterface,
     private val getMovieByIdUseCase: GetMovieByIdUseCase,
-) : DetailsInterface.DetailsPresenterInterface, CoroutineScope {
+) : DetailsInterface.DetailsPresenterInterface {
 
-    private var job = Job()
+    private var job = SupervisorJob()
 
     override val coroutineContext: CoroutineContext = job + Dispatchers.Main
 
-    override fun viewDestroyed() {
-        job.cancel()
+    override fun onViewDestroyed() {
+        job.cancelChildren()
     }
 
-    override fun viewCreated(movieId: Int) {
+    override fun onViewCreated(movieId: Int) {
         updateItem(movieId)
     }
 

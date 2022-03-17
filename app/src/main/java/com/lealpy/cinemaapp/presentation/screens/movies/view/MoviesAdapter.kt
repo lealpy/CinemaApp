@@ -38,7 +38,7 @@ class MoviesAdapter(
         fun bind(genreItem: RecyclerViewItem.GenreItem) {
             binding.genreName.text = genreItem.genre.genreName
 
-            binding.root.setOnClickListener {
+            binding.genreCardView.setOnClickListener {
                 onGenreItemClicked(genreItem)
             }
 

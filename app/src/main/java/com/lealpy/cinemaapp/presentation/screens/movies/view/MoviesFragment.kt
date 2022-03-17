@@ -44,11 +44,11 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesInterface.Movie
         binding = FragmentMoviesBinding.bind(view)
         initViews()
         initToolbar()
-        presenter.viewCreated()
+        presenter.onViewCreated()
     }
 
     override fun onDestroyView() {
-        presenter.viewDestroyed()
+        presenter.onViewDestroyed()
         super.onDestroyView()
     }
 

@@ -27,13 +27,13 @@ class DetailsFragment : Fragment(R.layout.fragment_details), DetailsInterface.De
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailsBinding.bind(view)
         arguments?.getInt(MOVIE_ID_KEY)?.let { movieId ->
-            presenter.viewCreated(movieId = movieId)
+            presenter.onViewCreated(movieId = movieId)
         }
         initToolbar()
     }
 
     override fun onDestroyView() {
-        presenter.viewDestroyed()
+        presenter.onViewDestroyed()
         super.onDestroyView()
     }
 

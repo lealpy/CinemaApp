@@ -18,20 +18,21 @@ class MoviesPresenter @Inject constructor(
     private val view: MoviesInterface.MoviesViewInterface,
     private val getAllMoviesUseCase: GetAllMoviesUseCase,
     private val getMoviesByGenreUseCase: GetMoviesByGenreUseCase,
-) : MoviesInterface.MoviesPresenterInterface, CoroutineScope {
+) : MoviesInterface.MoviesPresenterInterface {
 
-    private var job = Job()
+    private var job = SupervisorJob()
 
     override val coroutineContext: CoroutineContext = job + Dispatchers.Main
 
     private var checkedGenre = ALL_GENRES
+
     private var isGenresOpened = true
 
-    override fun viewDestroyed() {
-        job.cancel()
+    override fun onViewDestroyed() {
+        job.cancelChildren()
     }
 
-    override fun viewCreated() {
+    override fun onViewCreated() {
         updateItems()
     }
 
@@ -67,42 +68,43 @@ class MoviesPresenter @Inject constructor(
     private suspend fun getRecyclerViewItems(): List<RecyclerViewItem> {
         val recyclerViewItems = mutableListOf<RecyclerViewItem>()
 
-        val genreItems = if (isGenresOpened) {
+        recyclerViewItems.add(getChapterItemGenres())
+        recyclerViewItems.addAll(getGenreItems())
+        recyclerViewItems.add(getChapterItemMovies())
+        recyclerViewItems.addAll(getMoviesItems())
+
+        return recyclerViewItems
+    }
+
+    private fun getChapterItemGenres(): RecyclerViewItem.ChapterItem {
+        return RecyclerViewItem.ChapterItem(
+            id = Chapter.GENRES.id,
+            chapter = Chapter.GENRES,
+            dropDownVisibility = View.VISIBLE
+        )
+    }
+
+    private fun getChapterItemMovies(): RecyclerViewItem.ChapterItem {
+        return RecyclerViewItem.ChapterItem(
+            id = Chapter.MOVIES.id,
+            chapter = Chapter.MOVIES,
+            dropDownVisibility = View.GONE
+        )
+    }
+
+    private fun getGenreItems(): List<RecyclerViewItem.GenreItem> {
+        return if (isGenresOpened) {
             enumValues<Genre>().toList().toGenreItems(checkedGenre)
         } else {
             emptyList()
         }
+    }
 
-        val movieItems = when (checkedGenre) {
-            ALL_GENRES -> {
-                getAllMoviesUseCase().toMovieItems()
-            }
-            else -> {
-                getMoviesByGenreUseCase(checkedGenre.genreName).toMovieItems()
-            }
-        }
-
-        recyclerViewItems.add(
-            RecyclerViewItem.ChapterItem(
-                id = Chapter.GENRES.id,
-                chapter = Chapter.GENRES,
-                dropDownVisibility = View.VISIBLE
-            )
-        )
-
-        recyclerViewItems.addAll(genreItems)
-
-        recyclerViewItems.add(
-            RecyclerViewItem.ChapterItem(
-                id = Chapter.MOVIES.id,
-                chapter = Chapter.MOVIES,
-                dropDownVisibility = View.GONE
-            )
-        )
-
-        recyclerViewItems.addAll(movieItems)
-
-        return recyclerViewItems
+    private suspend fun getMoviesItems(): List<RecyclerViewItem.MovieItem> {
+        return when (checkedGenre) {
+            ALL_GENRES -> getAllMoviesUseCase()
+            else -> getMoviesByGenreUseCase(checkedGenre.genreName)
+        }.toMovieItems()
     }
 
 }

@@ -18,11 +18,11 @@ class MainPresenter @Inject constructor(
 
     override val coroutineContext: CoroutineContext = job + Dispatchers.Main
 
-    override fun viewDestroyed() {
+    override fun onViewDestroyed() {
         job.cancel()
     }
 
-    override fun viewCreated() {
+    override fun onViewCreated() {
         view.showMessageNoInternet()
 
         launch {

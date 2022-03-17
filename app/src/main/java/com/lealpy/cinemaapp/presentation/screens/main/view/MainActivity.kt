@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity(), MainInterface.MainViewInterface {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initViews()
-        presenter.viewCreated()
+        presenter.onViewCreated()
     }
 
     override fun onDestroy() {
-        presenter.viewDestroyed()
+        presenter.onViewDestroyed()
         super.onDestroy()
     }
 
