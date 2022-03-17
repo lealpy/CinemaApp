@@ -1,8 +1,11 @@
 package com.lealpy.cinemaapp.presentation.screens.details.view
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.lealpy.cinemaapp.R
 import com.lealpy.cinemaapp.databinding.FragmentDetailsBinding
@@ -26,6 +29,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details), DetailsInterface.De
         arguments?.getInt(MOVIE_ID_KEY)?.let { movieId ->
             presenter.viewCreated(movieId = movieId)
         }
+        initToolbar()
     }
 
     override fun onDestroyView() {
@@ -53,6 +57,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details), DetailsInterface.De
             .placeholder(R.drawable.ic_baseline_sentiment_dissatisfied_24)
             .error(R.drawable.ic_baseline_sentiment_dissatisfied_24)
             .into(binding.detailsImage)
+
+        (requireActivity() as? AppCompatActivity)?.supportActionBar?.title = movie.localizedName
     }
 
     override fun showProgress() {
@@ -61,6 +67,20 @@ class DetailsFragment : Fragment(R.layout.fragment_details), DetailsInterface.De
 
     override fun hideProgress() {
         binding.progressBar.visibility = View.GONE
+    }
+
+    private fun initToolbar() {
+        setHasOptionsMenu(true)
+        (requireActivity() as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                findNavController().popBackStack()
+            }
+        }
+        return true
     }
 
 }

@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity(), MainInterface.MainViewInterface {
             getString(R.string.no_internet),
             Snackbar.LENGTH_INDEFINITE,
         )
+
+        supportActionBar?.title = ""
     }
 
     private var snackbar: Snackbar? = null

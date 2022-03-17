@@ -2,6 +2,7 @@ package com.lealpy.cinemaapp.presentation.screens.movies.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -21,7 +22,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesInterface.Movie
     @Inject
     lateinit var presenter: MoviesInterface.MoviesPresenterInterface
 
-    private val adapter = MoviesAdapter (
+    private val adapter = MoviesAdapter(
         onGenreItemClicked = { genreItem ->
             presenter.onGenreItemClicked(genreItem)
         },
@@ -38,6 +39,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesInterface.Movie
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMoviesBinding.bind(view)
         initViews()
+        initToolbar()
         presenter.viewCreated()
     }
 
@@ -64,6 +66,13 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesInterface.Movie
             presenter.onSwipedRefresh()
             binding.swipeRefreshLayout.isRefreshing = false
         }
+    }
+
+    private fun initToolbar() {
+        setHasOptionsMenu(true)
+        val appCompatActivity = (requireActivity() as? AppCompatActivity)
+        appCompatActivity?.supportActionBar?.title = getString(R.string.movies_title)
+        appCompatActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
 
 }

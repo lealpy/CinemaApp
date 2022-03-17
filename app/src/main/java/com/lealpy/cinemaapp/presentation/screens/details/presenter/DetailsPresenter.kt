@@ -2,7 +2,6 @@ package com.lealpy.cinemaapp.presentation.screens.details.presenter
 
 import com.lealpy.cinemaapp.domain.usecases.GetMovieByIdUseCase
 import com.lealpy.cinemaapp.presentation.screens.details.DetailsInterface
-import com.lealpy.cinemaapp.presentation.screens.movies.MoviesInterface
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -33,7 +32,6 @@ class DetailsPresenter @Inject constructor(
             }
 
             view.updateMovie(movie)
-
             view.hideProgress()
         }
     }
