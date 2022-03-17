@@ -23,8 +23,6 @@ class MainPresenter @Inject constructor(
     }
 
     override fun onViewCreated() {
-        view.showMessageNoInternet()
-
         launch {
             checkNetworkConnection.networkStatus.collect { networkStatus ->
                 when (networkStatus) {

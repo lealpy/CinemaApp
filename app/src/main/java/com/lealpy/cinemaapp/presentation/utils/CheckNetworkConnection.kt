@@ -14,7 +14,12 @@ class CheckNetworkConnection(context: Context) {
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     val networkStatus = callbackFlow {
+
         val networkStatusCallback = object : ConnectivityManager.NetworkCallback() {
+            init {
+                trySend(false)
+            }
+
             override fun onUnavailable() {
                 trySend(false)
             }
