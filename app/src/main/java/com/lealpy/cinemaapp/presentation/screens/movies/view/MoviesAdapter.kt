@@ -1,7 +1,6 @@
 package com.lealpy.cinemaapp.presentation.screens.movies.view
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,7 +10,6 @@ import com.lealpy.cinemaapp.R
 import com.lealpy.cinemaapp.databinding.ItemChapterBinding
 import com.lealpy.cinemaapp.databinding.ItemGenreBinding
 import com.lealpy.cinemaapp.databinding.ItemMovieBinding
-import com.lealpy.cinemaapp.presentation.models.Chapter
 import com.lealpy.cinemaapp.presentation.models.RecyclerViewItem
 
 class MoviesAdapter(
@@ -30,10 +28,7 @@ class MoviesAdapter(
                 onChapterItemClicked(chapterItem)
             }
 
-            binding.chapterDropDown.visibility = when (chapterItem.chapter) {
-                Chapter.GENRES -> View.VISIBLE
-                Chapter.MOVIES -> View.INVISIBLE
-            }
+            binding.chapterDropDown.visibility = chapterItem.dropDownVisibility
         }
     }
 

@@ -1,5 +1,6 @@
 package com.lealpy.cinemaapp.presentation.screens.movies.presenter
 
+import android.view.View
 import com.lealpy.cinemaapp.domain.usecases.GetAllMoviesUseCase
 import com.lealpy.cinemaapp.domain.usecases.GetMoviesByGenreUseCase
 import com.lealpy.cinemaapp.presentation.models.Chapter
@@ -84,7 +85,8 @@ class MoviesPresenter @Inject constructor(
         recyclerViewItems.add(
             RecyclerViewItem.ChapterItem(
                 id = Chapter.GENRES.id,
-                chapter = Chapter.GENRES
+                chapter = Chapter.GENRES,
+                dropDownVisibility = View.VISIBLE
             )
         )
 
@@ -93,7 +95,8 @@ class MoviesPresenter @Inject constructor(
         recyclerViewItems.add(
             RecyclerViewItem.ChapterItem(
                 id = Chapter.MOVIES.id,
-                chapter = Chapter.MOVIES
+                chapter = Chapter.MOVIES,
+                dropDownVisibility = View.GONE
             )
         )
 

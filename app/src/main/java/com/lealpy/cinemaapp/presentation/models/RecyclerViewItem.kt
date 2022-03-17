@@ -5,6 +5,7 @@ sealed class RecyclerViewItem(val itemId: Int) {
     data class ChapterItem(
         val id: Int,
         val chapter: Chapter,
+        val dropDownVisibility: Int,
     ) : RecyclerViewItem(itemId = id)
 
     data class GenreItem(
