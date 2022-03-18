@@ -9,7 +9,9 @@ class GetMoviesByGenreUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(genreName: String): List<Movie> {
-        return moviesRepository.getMoviesByGenre(genreName = genreName)
+        return moviesRepository.getMoviesByGenre(genreName = genreName).sortedBy { movie ->
+            movie.localizedName
+        }
     }
 
 }
