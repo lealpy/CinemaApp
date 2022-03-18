@@ -9,7 +9,9 @@ class GetAllMoviesUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): List<Movie> {
-        return moviesRepository.getAllMovies()
+        return moviesRepository.getAllMovies().sortedBy { movie ->
+            movie.localizedName
+        }
     }
 
 }
