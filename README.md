@@ -26,3 +26,6 @@ https://user-images.githubusercontent.com/90380451/158894803-4f3e94f9-efe3-442e-
 - Glide
 - Room
 - RecyclerView with multiple View Types
+
+## APK-файл:
+APK находится в директории CinemaApp/app/release/app-release.apk
